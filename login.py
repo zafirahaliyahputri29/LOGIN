@@ -1,14 +1,29 @@
 # program login
 
-def f(u, p):
-    if u == "admin" and p == "123":
-        print("Login berhasil")
-        print("Selamat datang admin")
-    else:
-        print("Login gagal")
-        print("Coba lagi")
+USERS = {
+    "admin": "123",
+    "user1": "abc",
+}
 
-user = input("Username: ")
-pw = input("Password: ")
+def validate_login(username, password):
+    if username in USERS and USERS[username] == password:
+        return True
+    return False
 
-f(user, pw)
+def show_success(username):
+    print("Login berhasil")
+    print(f"Selamat datang {username}")
+
+def show_error():
+    print("Login gagal")
+    print("Coba lagi")   
+
+username_input = input("Username: ")    
+password_input = input("Password: ")
+
+is_valild = validate_login(username_input, password_input)
+
+if is_valild:
+    show_success(username_input)
+else:
+    show_error()
